@@ -6,24 +6,20 @@ class Movies extends Component {
     movies: getMovies()
   };
 
-  checkMoviesExist() {
-    const moviesCount = this.state.movies.length;
-    return moviesCount > 0 ? (
-      <p>Showing {moviesCount} movies in the database </p>
-    ) : (
-      <p> no movie</p>
-    );
-  }
-
-  handleDelete(movie) {
-    deleteMovie(movie);
-    this.setState({ movies: getMovies() });
+  handleDelete(movieId) {
+    const movies = this.state.movies.filter(m => m._id !== movieId._id);
+    this.setState({ movies }); //same as this.setState({ movies:movies });
   }
 
   render() {
+    const { length: count } = this.state.movies; //rename length as count
+    //const count = this.state.movies.length;
+
+    if (count === 0) return <p>There are no movies in the database</p>;
+
     return (
       <div>
-        {this.checkMoviesExist()}
+        <p>Showing {count} movies in the database </p>
         <table className="table">
           <thead>
             <tr>
@@ -34,8 +30,8 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map((movie, id) => (
-              <tr key={id}>
+            {this.state.movies.map(movie => (
+              <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
                 <td>{movie.numberInStock}</td>
@@ -43,7 +39,7 @@ class Movies extends Component {
                 <td>
                   <button
                     onClick={() => {
-                      this.handleDelete(movie._id);
+                      this.handleDelete(movie);
                     }}
                     className="btn btn-danger btn-sm"
                   >
