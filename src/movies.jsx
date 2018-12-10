@@ -17,10 +17,10 @@ class Movies extends Component {
     this.setState({ movies }); //same as this.setState({ movies:movies });
   }
 
-  handleLike = like => {
+  handleLike(like) {
     this.setState({ testlike: like });
     console.log(this.state.testlike);
-  };
+  }
 
   render() {
     const { length: count } = this.state.movies; //rename length as count
@@ -49,7 +49,10 @@ class Movies extends Component {
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
                 <td>
-                  <Like like={this.state.testlike} onLike={this.handleLike} />
+                  <Like
+                    like={this.state.testlike}
+                    onLike={this.handleLike.bind(this)}
+                  />
                 </td>
                 <td>
                   <button
