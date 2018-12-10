@@ -1,8 +1,9 @@
 import * as genresAPI from "./fakeGenreService";
 
-const movies = [
+let movies = [
   {
     _id: "5b21ca3eeb7f6fbccd471815",
+    like: false,
     title: "Terminator",
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 6,
@@ -11,6 +12,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd471816",
+    like: false,
     title: "Die Hard",
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 5,
@@ -18,6 +20,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd471817",
+    like: false,
     title: "Get Out",
     genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
     numberInStock: 8,
@@ -25,6 +28,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd471819",
+    like: false,
     title: "Trip to Italy",
     genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
     numberInStock: 7,
@@ -32,6 +36,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181a",
+    like: false,
     title: "Airplane",
     genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
     numberInStock: 7,
@@ -39,6 +44,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181b",
+    like: false,
     title: "Wedding Crashers",
     genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
     numberInStock: 7,
@@ -46,6 +52,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181e",
+    like: false,
     title: "Gone Girl",
     genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
     numberInStock: 7,
@@ -53,6 +60,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181f",
+    like: false,
     title: "The Sixth Sense",
     genre: { _id: "5b21ca3eeb7f6fbccd471820", name: "Thriller" },
     numberInStock: 4,
@@ -60,6 +68,7 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd471821",
+    like: false,
     title: "The Avengers",
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 7,
