@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+// INput: liked: bolean
+// Output: onClick
+
 class Like extends Component {
   render() {
     let heartClassName = "fa fa-heart";

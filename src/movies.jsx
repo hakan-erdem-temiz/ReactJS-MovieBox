@@ -8,8 +8,7 @@ import Like from "./common/like";
 
 class Movies extends Component {
   state = {
-    movies: getMovies(),
-    testlike: false
+    movies: getMovies()
   };
 
   handleDelete(movieId) {
@@ -17,12 +16,12 @@ class Movies extends Component {
     this.setState({ movies }); //same as this.setState({ movies:movies });
   }
 
-  handleLike(like, id) {
+  handleLike = (like, id) => {
     let movies1 = this.state.movies.filter(m => m._id === id);
     movies1[0].like = like;
     this.setState({ movies: this.state.movies });
     console.log(this.state.movies + "1");
-  }
+  };
 
   render() {
     const { length: count } = this.state.movies; //rename length as count
@@ -55,7 +54,7 @@ class Movies extends Component {
                     like={movie.like}
                     id={movie._id}
                     likeData={movie.like}
-                    onLike={this.handleLike.bind(this)}
+                    onLike={this.handleLike}
                   />
                 </td>
                 <td>
