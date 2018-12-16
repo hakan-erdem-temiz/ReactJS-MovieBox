@@ -12,9 +12,7 @@ class Like extends Component {
         className={heartClassName}
         aria-hidden="true"
         style={{ cursor: "pointer" }}
-        onClick={function() {
-          this.props.onLike(this.props.likeData);
-        }.bind(this)}
+        onClick={this.props.onLike}
       />
     );
   }
