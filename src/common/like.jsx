@@ -10,7 +10,7 @@ class Like extends Component {
         aria-hidden="true"
         style={{ cursor: "pointer" }}
         onClick={function() {
-          this.props.onLike(!this.props.like);
+          this.props.onLike(!this.props.like, this.props.id);
         }.bind(this)}
       />
     );

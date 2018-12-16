@@ -17,9 +17,11 @@ class Movies extends Component {
     this.setState({ movies }); //same as this.setState({ movies:movies });
   }
 
-  handleLike(like) {
-    this.setState({ testlike: like });
-    console.log(this.state.testlike);
+  handleLike(like, id) {
+    let movies1 = this.state.movies.filter(m => m._id === id);
+    movies1[0].like = like;
+    this.setState({ movies: this.state.movies });
+    console.log(this.state.movies + "1");
   }
 
   render() {
@@ -50,7 +52,9 @@ class Movies extends Component {
                 <td>{movie.dailyRentalRate}</td>
                 <td>
                   <Like
-                    like={this.state.testlike}
+                    like={movie.like}
+                    id={movie._id}
+                    likeData={movie.like}
                     onLike={this.handleLike.bind(this)}
                   />
                 </td>
