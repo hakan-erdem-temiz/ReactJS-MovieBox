@@ -1,28 +1,23 @@
 import React, { Component } from "react";
-import {
-  getMovies,
-  deleteMovie,
-  setFavorite
-} from "./services/fakeMovieService";
+import { getMovies } from "./services/fakeMovieService";
 import { getGenres } from "./services/fakeGenreService";
 import Like from "./common/like";
 import Pagination from "./common/pagination";
 import { paginate } from "./utils/paginate";
-import listGroup from "./common/listGroup";
 import ListGroup from "./common/listGroup";
 
 class Movies extends Component {
   state = {
     movies: [],
     genres: [], // component didmount
-    currentGenre: "Action",
     pageSize: 4,
     currentPage: 1
   };
 
   componentDidMount() {
     //call services
-    this.setState({ movies: getMovies(), genres: getGenres() });
+    const genres = [{ name: "All Genres", _id: "AllGenres" }, ...getGenres()];
+    this.setState({ movies: getMovies(), genres });
   }
 
   handleDelete(movieId) {
@@ -46,7 +41,7 @@ class Movies extends Component {
 
   handleGenreSelect = genre => {
     console.log(genre);
-    this.setState({ currentGenre: genre.name });
+    this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
   render() {
@@ -55,31 +50,30 @@ class Movies extends Component {
     const {
       pageSize,
       currentPage,
-      currentGenre,
-      movies: serverMovies
+      selectedGenre,
+      movies: allMovies
     } = this.state;
 
     if (count === 0) return <p>There are no movies in the database</p>;
 
-    const movies = paginate(
-      serverMovies.filter(m => m.genre.name === currentGenre),
-      currentPage,
-      pageSize
-    );
+    const filtered =
+      selectedGenre && selectedGenre._id
+        ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+        : allMovies;
+
+    const movies = paginate(filtered, currentPage, pageSize);
 
     return (
       <div className="row">
         <div className="col-2">
           <ListGroup
             genres={this.state.genres}
-            textProperty="name"
-            valueProperty="_id"
+            selectedItem={this.state.selectedGenre}
             onItemSelect={this.handleGenreSelect}
-            currentGenre={this.state.currentGenre}
           />
         </div>
         <div className="col">
-          <p>Showing {count} movies in the database </p>
+          <p>Showing {filtered.length} movies in the database </p>
           <table className="table">
             <thead>
               <tr>
@@ -118,7 +112,7 @@ class Movies extends Component {
             </tbody>
           </table>
           <Pagination
-            itemsCount={count}
+            itemsCount={filtered.length}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
@@ -128,5 +122,10 @@ class Movies extends Component {
     );
   }
 }
+
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id"
+};
 
 export default Movies;
