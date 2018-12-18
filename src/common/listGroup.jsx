@@ -1,22 +1,20 @@
 import React from "react";
 
 const ListGroup = props => {
-  const genres = props.genres;
+  const { genres, textProperty, valueProperty, currentGenre } = props;
   const className = "list-group-item list-group-item-action";
   return (
     <div className="list-group">
-      {genres.map(genreName => (
+      {genres.map(item => (
         <a
           className={
-            genreName.name === props.currentGenre
-              ? className + " active"
-              : className
+            item.name === currentGenre ? className + " active" : className
           }
           style={{ cursor: "pointer" }}
-          key={genreName._id}
-          onClick={() => props.onGroupChange(genreName)}
+          key={item[valueProperty]}
+          onClick={() => props.onItemSelect(item)}
         >
-          {genreName.name}
+          {item[textProperty]}
         </a>
       ))}
     </div>
