@@ -9,7 +9,7 @@ const ListGroup = props => {
         <li
           className={item === selectedItem ? className + " active" : className}
           style={{ cursor: "pointer" }}
-          key={item[valueProperty]}
+          key={item[valueProperty] ? item[valueProperty] : item[textProperty]}
           onClick={() => props.onItemSelect(item)}
         >
           {console.log(item[valueProperty])}
