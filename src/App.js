@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import * as genresAPI from "./fakeGenreService";
 import "./App.css";
-import Movies from "./movies";
+import Movies from "./components/movies";
 
 class App extends Component {
   render() {
