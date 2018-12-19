@@ -22,10 +22,10 @@ class Movies extends Component {
     this.setState({ movies: getMovies(), genres });
   }
 
-  handleDelete(movieId) {
+  handleDelete = movieId => {
     const movies = this.state.movies.filter(m => m._id !== movieId._id);
     this.setState({ movies }); //same as this.setState({ movies:movies });
-  }
+  };
 
   handleLike = movie => {
     console.log(movie);
