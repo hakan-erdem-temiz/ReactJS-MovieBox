@@ -6,24 +6,21 @@ import Movies from "./components/movies";
 import NavBar from "./components/navbar";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
-import NotFound from "./components/notfound";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        {/* <Switch>
-          <Route path="/movies" Component={Movies} />
-          <Route path="/customers" Component={Customers} />
-          <Route path="/Rentals" Component={Rentals} />
-          <Route path="/notfound" Component={NotFound} />
-          <Route path="/" excat Component={Movies} />
-        </Switch> */}
-        <Route path="/customers" Component={Customers} />
         <main className="container">
-          <h1>Movie List App:</h1>
-          <Movies />
+          <NavBar />
+          <Switch>
+            <Route path="/movies" component={Movies} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/Rentals" component={Rentals} />
+            <Route path="/notfound" component={NotFound} />
+            <Route path="/" excat component={Movies} />
+          </Switch>
         </main>
       </div>
     );
