@@ -20,6 +20,9 @@ const NavBar = () => {
           <NavLink className={"nav-item nav-link" + ""} to="/login">
             Login
           </NavLink>
+          <NavLink className={"nav-item nav-link" + ""} to="/Register">
+            Register
+          </NavLink>
         </div>
       </div>
     </nav>
