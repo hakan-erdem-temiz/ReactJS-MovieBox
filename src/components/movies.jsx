@@ -28,8 +28,12 @@ class Movies extends Component {
     this.setState({ movies }); //same as this.setState({ movies:movies });
   };
 
+  handleAdd = () => {
+    console.log("Added");
+  };
+
   handleLike = movie => {
-    console.log(movie);
+    //console.log(movie);
     const movies = [...this.state.movies];
     const index = movies.indexOf(movie);
     movies[index] = { ...movies[index] };
@@ -38,12 +42,12 @@ class Movies extends Component {
   };
 
   handlePageChange = page => {
-    console.log(page);
+    //console.log(page);
     this.setState({ currentPage: page });
   };
 
   handleGenreSelect = genre => {
-    console.log(genre);
+    //console.log(genre);
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
@@ -93,8 +97,10 @@ class Movies extends Component {
         <div className="col">
           <Link
             className="navbar-brand"
-            genres={this.state.genres}
-            to="/movies/new"
+            to={{
+              pathname: "/movies/new",
+              state: { genres: this.state.genres }
+            }}
           >
             <button className="btn btn-primary">New Movie</button>
           </Link>

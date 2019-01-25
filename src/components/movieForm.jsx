@@ -30,8 +30,25 @@ class movieForm extends Form {
       .max(100)
   };
 
+  genderlist = () => {
+    let genreList = [];
+    let genres = this.props.location.state.genres;
+
+    for (let genre of genres) {
+      if (genre["_id"]) genreList.push(genre);
+    }
+
+    return genreList.map(genre => (
+      <option key={genre["_id"]}>{genre["name"]}</option>
+    ));
+  };
+
+  saveChanges = () => {
+    console.log(this.props.location);
+  };
+
   render() {
-    const { match, history } = this.props;
+    const { match, history, location } = this.props;
     //console.log(match);
     //console.log(history);
     // let handleSave = () => {
@@ -43,9 +60,19 @@ class movieForm extends Form {
         <h1>movieForm</h1>
         <p>{match.params.id}</p>
         {this.renderInput("title", "Title")}
-        {this.renderInput("genre", "Genre")}
+        <div>
+          <label htmlFor="Genre">Genre</label>
+          <div>
+            <select id="selectGenre">
+              <option />
+              {this.genderlist()}
+            </select>
+          </div>
+        </div>
+
         {this.renderInput("numberinstock", "NumberInStock")}
         {this.renderInput("rate", "Rate")}
+
         <button
           className="btn btn-primary"
           onClick={() => history.push("/movies")}

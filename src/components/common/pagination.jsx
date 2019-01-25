@@ -9,7 +9,6 @@ const Pagination = props => {
   const pages = _.range(1, pagesCount + 1);
   //const test2 = [...Array(n).keys()];
   // [1... pagesCount].map()
-  console.log(currentPage);
   return (
     <div>
       <nav>
