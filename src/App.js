@@ -18,8 +18,6 @@ class App extends Component {
         <main className="container">
           <NavBar />
           <Switch>
-            <Route path="/login" component={loginForm} />
-            <Route path="/movies/:id" component={movieForm} />
             {/* <Route
               path="/movies/:id"
               render={props => (
@@ -30,6 +28,8 @@ class App extends Component {
                 />
               )}
             /> send variable*/}
+            <Route path="/login" component={loginForm} />
+            <Route path="/movies/:id" component={movieForm} />
             <Route path="/movies" component={Movies} />
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />

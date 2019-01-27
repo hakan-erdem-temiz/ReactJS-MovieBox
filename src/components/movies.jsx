@@ -15,13 +15,18 @@ class Movies extends Component {
     pageSize: 4,
     currentPage: 1,
     selectedGenre: null,
+    searchQuery: [],
     sortColumn: { path: "title", order: "asc" }
   };
 
   componentDidMount() {
     //call services
     const genres = [{ name: "All Genres", _id: "" }, ...getGenres()];
-    this.setState({ movies: getMovies(), genres });
+    this.setState({
+      movies: getMovies(),
+      genres,
+      selectedGenre: genres ? genres[0] : null
+    });
   }
 
   handleDelete = movieId => {
@@ -50,10 +55,24 @@ class Movies extends Component {
   handleGenreSelect = genre => {
     //console.log(genre);
     this.setState({ selectedGenre: genre, currentPage: 1 });
+    this.setState({ searchQuery: "" });
   };
 
   handleSort = sortColumn => {
     this.setState({ sortColumn });
+  };
+
+  handleSearch = input => {
+    const inputName = input.currentTarget.value;
+    const machList = this.state.movies.filter(
+      n =>
+        n.title.substring(0, inputName.length).toLowerCase() ==
+        inputName.toLowerCase()
+    );
+
+    console.log(input.currentTarget.value);
+    this.setState({ searchQuery: machList });
+    this.setState({ selectedGenre: null });
   };
 
   getPagedData = () => {
@@ -107,8 +126,15 @@ class Movies extends Component {
             New Movie
           </Link>
           <p>Showing {totalCount} movies in the database </p>
+          <input
+            className="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            onChange={this.handleSearch}
+          />
           <MoviesTable
-            movies={movies}
+            movies={this.state.selectedGenre ? movies : this.state.searchQuery}
             sortColumn={sortColumn}
             onDelete={this.handleDelete}
             onLike={this.handleLike}
