@@ -14,6 +14,7 @@ class Movies extends Component {
     genres: [], // component didmount
     pageSize: 4,
     currentPage: 1,
+    selectedGenre: null,
     sortColumn: { path: "title", order: "asc" }
   };
 
@@ -96,13 +97,14 @@ class Movies extends Component {
         </div>
         <div className="col">
           <Link
-            className="navbar-brand"
+            className="btn btn-primary"
+            style={{ marginBottom: 20 }}
             to={{
               pathname: "/movies/new",
               state: { genres: this.state.genres }
             }}
           >
-            <button className="btn btn-primary">New Movie</button>
+            New Movie
           </Link>
           <p>Showing {totalCount} movies in the database </p>
           <MoviesTable
