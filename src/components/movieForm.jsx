@@ -36,20 +36,28 @@ class MovieForm extends Form {
       .label("Daily Rental Rate")
   };
 
-  async componentDidMount() {
+  async populateGenres() {
     const { data: genres } = await getGenres(); //data.genres
     this.setState({ genres });
+  }
 
-    const movieId = this.props.match.params.id;
-    if (movieId === "new") return;
-
+  async populateMovie() {
     try {
+      const movieId = this.props.match.params.id;
+      if (movieId === "new") return;
+
       const { data: movie } = await getMovie(movieId);
       this.setState({ data: this.mapToViewModel(movie) });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
     }
+  }
+
+  async componentDidMount() {
+    //i divide it in two function to tell a stroy of componentdidmounth
+    await this.populateGenres();
+    await this.populateMovie();
   }
 
   mapToViewModel(movie) {
