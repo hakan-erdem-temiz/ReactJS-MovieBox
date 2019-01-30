@@ -10,9 +10,11 @@ class MovieForm extends Form {
       title: "",
       genreId: "",
       numberInStock: "",
-      dailyRentalRate: ""
+      dailyRentalRate: "",
+      liked: false
     },
     genres: [],
+    likeOptions: [{ name: "true", _id: true }, { name: "false", _id: false }],
     errors: {}
   };
 
@@ -33,7 +35,8 @@ class MovieForm extends Form {
       .required()
       .min(0)
       .max(10)
-      .label("Daily Rental Rate")
+      .label("Daily Rental Rate"),
+    liked: Joi.boolean().required()
   };
 
   async populateGenres() {
@@ -67,7 +70,8 @@ class MovieForm extends Form {
       title: movie.title,
       genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
-      dailyRentalRate: movie.dailyRentalRate
+      dailyRentalRate: movie.dailyRentalRate,
+      liked: movie.liked == undefined ? false : movie.liked
     };
   }
 
@@ -89,6 +93,7 @@ class MovieForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
+          {this.renderSelect("liked", "Liked", this.state.likeOptions)}
           {this.renderInput("numberInStock", "NumberInStock")}
           {this.renderInput("dailyRentalRate", "Rate")}
           {this.renderButton("Save")}

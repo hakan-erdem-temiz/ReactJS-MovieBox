@@ -4,26 +4,31 @@ import { apiUrl } from "../config.json";
 
 const apiEndpoint = apiUrl + "/movies";
 
+function movieUrl(id) {
+  return `${apiEndpoint}/${id}`;
+}
+
 export function getMovies() {
   return http.get(apiEndpoint);
 }
 
 export function getMovie(movieId) {
-  return http.get(apiEndpoint + "/" + movieId);
+  return http.get(movieUrl(movieId));
 }
 
 export function deleteMovie(movieId) {
-  http.delete(apiEndpoint + "/" + movieId);
+  http.delete(movieUrl(movieId));
 }
 
 export function saveMovie(movie) {
-  //create
+  //update
   if (movie._id) {
     const body = { ...movie };
     delete body._id;
-    return http.put(apiEndpoint + "/" + movie._id, body);
+    console.log("ms:" + movie);
+    return http.put(movieUrl(movie._id), body);
   }
 
-  //update
+  //create
   return http.post(apiEndpoint, movie);
 }

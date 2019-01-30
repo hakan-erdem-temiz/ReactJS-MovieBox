@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMovies, deleteMovie } from "../services/movieService";
+import { getMovies, deleteMovie, saveMovie } from "../services/movieService";
 import { getGenres } from "../services/genreService";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
@@ -48,13 +48,33 @@ class Movies extends Component {
     console.log("Added");
   };
 
-  handleLike = movie => {
+  mapToViewModel(movie) {
+    console.log("movie:" + movie);
+    return {
+      _id: movie._id,
+      title: movie.title,
+      genreId: movie.genre._id,
+      numberInStock: movie.numberInStock,
+      dailyRentalRate: movie.dailyRentalRate,
+      liked: movie.liked
+    };
+  }
+
+  handleLike = async movie => {
     //console.log(movie);
+    const originalMovies = this.state.movies;
     const movies = [...this.state.movies];
     const index = movies.indexOf(movie);
     movies[index] = { ...movies[index] };
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
+
+    try {
+      await saveMovie(this.mapToViewModel(movies[index]));
+    } catch (ex) {
+      toast.error(ex);
+      this.setState({ originalMovies });
+    }
   };
 
   handlePageChange = page => {
