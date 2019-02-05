@@ -7,7 +7,7 @@ import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import MovieForm from "./components/movieForm";
 import LoginForm from "./components/loginForm";
-import NotFound from "./components/notFound";
+import NotFoundComponent from "./components/notFoundComponent";
 import RegisterForm from "./components/registerForm";
 import ProtectedRoute from "./components/common/protectedRoute";
 import Logout from "./components/logout";
@@ -48,7 +48,7 @@ class App extends Component {
             <ProtectedRoute path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/register" component={RegisterForm} />
-            <Route path="/not-found" component={NotFound} />
+            <Route path="/not-found" component={NotFoundComponent} />
             <Redirect from="/" exact to="/movies" />
             <Redirect to="not-found" />
           </Switch>
