@@ -1,14 +1,17 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
+
 const NavBar = ({ user }) => {
   //props.user
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <Navbar bg="light" expand="sm">
       <Link className="navbar-brand" to="/">
         MovieBox
       </Link>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
           <NavLink className={"nav-item nav-link"} to="/movies">
             Movies <span className="sr-only">(current)</span>
           </NavLink>
@@ -38,9 +41,9 @@ const NavBar = ({ user }) => {
               </NavLink>
             </React.Fragment>
           )}
-        </div>
-      </div>
-    </nav>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
