@@ -9,31 +9,31 @@ const NavBar = ({ user }) => {
       </Link>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <NavLink className={"nav-item nav-link" + ""} to="/movies">
+          <NavLink className={"nav-item nav-link"} to="/movies">
             Movies <span className="sr-only">(current)</span>
           </NavLink>
-          <NavLink className={"nav-item nav-link" + ""} to="/customers">
+          <NavLink className={"nav-item nav-link"} to="/customers">
             Customers
           </NavLink>
-          <NavLink className={"nav-item nav-link" + ""} to="/rentals">
+          <NavLink className={"nav-item nav-link"} to="/rentals">
             Rentals
           </NavLink>
           {!user && (
             <React.Fragment>
-              <NavLink className={"nav-item nav-link" + ""} to="/login">
+              <NavLink className={"nav-item nav-link"} to="/login">
                 Login
               </NavLink>
-              <NavLink className={"nav-item nav-link" + ""} to="/register">
+              <NavLink className={"nav-item nav-link"} to="/register">
                 Register
               </NavLink>
             </React.Fragment>
           )}
           {user && (
             <React.Fragment>
-              <NavLink className={"nav-item nav-link" + ""} to="/profile">
+              <NavLink className={"nav-item nav-link"} to="/profile">
                 {user.name}
               </NavLink>
-              <NavLink className={"nav-item nav-link" + ""} to="/logout">
+              <NavLink className={"nav-item nav-link"} to="/logout">
                 Logout
               </NavLink>
             </React.Fragment>

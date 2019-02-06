@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 //we dont need state so we create functional component inside of controller component
 

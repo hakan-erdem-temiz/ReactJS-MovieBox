@@ -125,7 +125,7 @@ class Movies extends Component {
   };
 
   render() {
-    const { length: count } = this.state.movies; //rename length as count
+    //const { length: count } = this.state.movies; //rename length as count
     //const count = this.state.movies.length;
     const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
     const { user } = this.props;

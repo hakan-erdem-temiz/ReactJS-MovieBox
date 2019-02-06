@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 // INput: liked: bolean
 // Output: onClick

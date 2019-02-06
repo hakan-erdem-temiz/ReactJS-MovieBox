@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
 import { getGenres } from "../services/genreService";
@@ -71,7 +71,7 @@ class MovieForm extends Form {
       genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
       dailyRentalRate: movie.dailyRentalRate,
-      liked: movie.liked == undefined ? false : movie.liked
+      liked: movie.liked === undefined ? false : movie.liked
     };
   }
 
