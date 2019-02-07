@@ -136,6 +136,7 @@ class Movies extends Component {
       <div className="row">
         <div className="col-2">
           <ListGroup
+            style={{ marginBottom: 20 }}
             genres={this.state.genres}
             selectedItem={this.state.selectedGenre}
             onItemSelect={this.handleGenreSelect}
