@@ -18,8 +18,18 @@ class Movies extends Component {
     pageSize: 4,
     searchQuery: "",
     selectedGenre: null,
-    sortColumn: { path: "title", order: "asc" }
+    sortColumn: { path: "title", order: "asc" },
+    width: window.innerWidth
   };
+
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth });
+    console.log(window.innerWidth);
+  };
+
+  componentWillMount() {
+    this.updateDimensions();
+  }
 
   async componentDidMount() {
     const { data } = await getGenres();
@@ -27,6 +37,12 @@ class Movies extends Component {
 
     const { data: movies } = await getMovies();
     this.setState({ movies, genres });
+
+    window.addEventListener("resize", this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
   }
 
   handleDelete = async movie => {
@@ -134,7 +150,7 @@ class Movies extends Component {
 
     return (
       <div className="row">
-        <div className="col-2">
+        <div className={this.state.width >= 768 ? "col-2" : "col"}>
           <ListGroup
             style={{ marginBottom: 20 }}
             genres={this.state.genres}
